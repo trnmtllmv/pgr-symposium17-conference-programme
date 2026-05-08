@@ -131,6 +131,94 @@
   .footer-l small{font-family:'Inter',sans-serif;display:block;font-size:11px;font-weight:500;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-top:6px}
   .footer-r{font-size:12px;color:var(--muted);text-align:right;line-height:1.6}
   .footer-r strong{color:var(--navy);font-weight:600}
+
+  /* ===== RESPONSIVE LAYOUT ===== */
+  img{max-width:100%;height:auto}
+
+  @media (max-width: 900px){
+    body{background:var(--white)}
+    .wrap{max-width:none;margin:0;border-radius:0;box-shadow:none}
+    .header-logos{padding:20px 40px !important;gap:28px}
+    .cover-body{padding:52px 44px 48px}
+    .cover-body::after{left:44px;right:44px}
+    .cover-h1{font-size:clamp(34px, 6vw, 42px) !important}
+    .cover-chips{flex-wrap:wrap;gap:14px}
+    .chip{flex:1 1 180px;padding:13px 18px}
+    .sec{padding:44px 36px 0}
+    .section-div{margin:48px 36px 0}
+    .footer{margin:48px 36px 0}
+    .committee{margin:52px 36px 0 !important;padding:28px 30px !important;gap:24px !important}
+    .srow{grid-template-columns:112px minmax(0,1fr) 240px}
+  }
+
+  @media (max-width: 720px){
+    .header-logos{padding:18px 24px !important}
+    .header-logos img:first-child{max-height:44px}
+    .header-logos img:last-child{max-height:52px}
+    .cover-body{padding:44px 24px 40px}
+    .cover-body::after{left:24px;right:24px}
+    .sym-label{font-size:10px;letter-spacing:2.5px;margin-bottom:18px}
+    .cover-h1{font-size:clamp(30px, 9vw, 38px) !important;letter-spacing:-0.6px !important}
+    .cover-sub{font-size:16px;line-height:1.5;margin-bottom:32px}
+    .cover-chips{display:grid;grid-template-columns:1fr;gap:12px}
+    .chip{width:100%}
+    .sec{padding:36px 20px 0}
+    .sec-hdr{align-items:flex-start;flex-wrap:wrap;gap:10px 14px;margin-bottom:24px}
+    .sec-num{width:100%}
+    .sec-title{font-size:23px;line-height:1.15}
+    .sec-hdr-badge{margin-left:0}
+
+    .sched{border:none;border-radius:0;box-shadow:none;overflow:visible;background:transparent}
+    .srow{display:block;border:1px solid var(--rule);border-left:1px solid var(--rule);border-radius:10px;margin-bottom:12px;overflow:hidden;box-shadow:var(--shadow)}
+    .srow:hover{background:#fff}
+    .srow.th{display:none}
+    .srow.grp{border:none;box-shadow:none;margin:24px 0 12px;border-radius:0}
+    .srow.grp .scell{border-radius:8px;padding:12px 14px;line-height:1.5}
+    .srow.grp .chair-tag{display:block;margin:8px 0 0;width:max-content;max-width:100%;white-space:normal}
+    .srow.hi,.srow.vip{border-left:4px solid var(--gold)}
+    .scell{padding:13px 15px;font-size:13px}
+    .scell.time{display:block;border-right:none;border-bottom:1px solid var(--rule);background:rgba(14,33,176,0.04);font-size:13px}
+    .scell.act{font-size:13.5px}
+    .scell.rem{display:block;border-left:none;border-top:1px solid var(--rule);background:#fbfdff;font-size:12px}
+    .srow.vip .scell.rem{display:block;padding-left:15px}
+    .vip-badge{display:inline-flex;margin:7px 0 0;padding:4px 9px;white-space:normal}
+    .chair-tag{margin-left:0}
+
+    .pgrp-lbl{letter-spacing:1.8px;line-height:1.4;margin-top:32px}
+    .pgrp-lbl .grp-chair{float:none;display:block;margin:8px 0 0;padding-left:0;border-left:0}
+    .pcard{grid-template-columns:42px minmax(0,1fr)}
+    .pbody{padding:15px 16px}
+    .pgrid{grid-template-columns:1fr}
+    .poster{padding:18px}
+    .section-div{margin:42px 20px 0;gap:10px}
+    .section-div-label{text-align:center;font-size:11px;letter-spacing:1.5px}
+    .committee{grid-template-columns:1fr !important;margin:44px 20px 0 !important;padding:24px !important;gap:22px !important}
+    .footer{margin:44px 20px 0;padding:28px 0 0;display:block}
+    .footer-r{margin-top:20px;text-align:left !important}
+    .footer-r[style]{display:flex !important;align-items:flex-start !important;justify-content:space-between;gap:16px !important}
+    .footer-r img{max-height:56px;width:auto}
+  }
+
+  @media (max-width: 420px){
+    .header-logos{padding:16px 18px !important;gap:18px}
+    .header-logos img:first-child{max-height:36px}
+    .header-logos img:last-child{max-height:44px}
+    .cover-body{padding:38px 18px 34px}
+    .cover-h1{font-size:31px !important}
+    .cover-sub{font-size:15px}
+    .sec{padding:32px 16px 0}
+    .sec-title{font-size:21px}
+    .scell{padding:12px 13px}
+    .pcard{grid-template-columns:38px minmax(0,1fr)}
+    .pn{font-size:14px}
+    .pbody{padding:14px}
+    .poster{padding:16px}
+    .section-div{margin-left:16px;margin-right:16px}
+    .committee{margin-left:16px !important;margin-right:16px !important}
+    .footer{margin-left:16px;margin-right:16px}
+    .footer-r[style]{display:block !important}
+    .footer-r img{margin-top:14px;max-height:52px}
+  }
 </style>
 
 </head>
