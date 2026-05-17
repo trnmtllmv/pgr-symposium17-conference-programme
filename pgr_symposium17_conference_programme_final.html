@@ -120,6 +120,16 @@
   .poster-title{font-size:12.5px;color:var(--txt);line-height:1.5;font-style:italic;margin-bottom:12px;flex-grow:1}
   .poster-sup{font-size:11.5px;color:var(--muted)}
 
+
+  /* ===== TABS ===== */
+  .tabs{padding:34px 64px 0;background:#fff}
+  .tab-list{display:flex;gap:10px;padding:8px;border:1px solid var(--rule);border-radius:999px;background:var(--off);box-shadow:var(--shadow)}
+  .tab-btn{appearance:none;border:0;background:transparent;color:var(--muted);font-family:'Outfit',sans-serif;font-size:12px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;padding:12px 20px;border-radius:999px;cursor:pointer;flex:1;transition:background .2s ease,color .2s ease,box-shadow .2s ease}
+  .tab-btn:hover{color:var(--royal);background:rgba(255,255,255,0.65)}
+  .tab-btn[aria-selected="true"]{background:var(--navy);color:#fff;box-shadow:0 6px 16px rgba(0,32,96,0.18)}
+  .tab-panel{display:none}
+  .tab-panel.active{display:block}
+
   /* ===== DIVIDERS ===== */
   .section-div{margin:56px 64px 0;display:flex;align-items:center;gap:16px}
   .section-div-line{flex:1;height:1px;background:var(--rule)}
@@ -145,6 +155,7 @@
     .cover-chips{flex-wrap:wrap;gap:14px}
     .chip{flex:1 1 180px;padding:13px 18px}
     .sec{padding:44px 36px 0}
+    .tabs{padding:28px 36px 0}
     .section-div{margin:48px 36px 0}
     .footer{margin:48px 36px 0}
     .committee{margin:52px 36px 0 !important;padding:28px 30px !important;gap:24px !important}
@@ -163,6 +174,9 @@
     .cover-chips{display:grid;grid-template-columns:1fr;gap:12px}
     .chip{width:100%}
     .sec{padding:36px 20px 0}
+    .tabs{padding:24px 20px 0}
+    .tab-list{border-radius:16px;flex-wrap:wrap}
+    .tab-btn{flex:1 1 100%;padding:11px 14px}
     .sec-hdr{align-items:flex-start;flex-wrap:wrap;gap:10px 14px;margin-bottom:24px}
     .sec-num{width:100%}
     .sec-title{font-size:23px;line-height:1.15}
@@ -207,6 +221,7 @@
     .cover-h1{font-size:31px !important}
     .cover-sub{font-size:15px}
     .sec{padding:32px 16px 0}
+    .tabs{padding-left:16px;padding-right:16px}
     .sec-title{font-size:21px}
     .scell{padding:12px 13px}
     .pcard{grid-template-columns:38px minmax(0,1fr)}
@@ -248,7 +263,7 @@
       </div>
       <div class="chip">
         <label>Duration</label>
-        <span>09:00 – 17:35</span>
+        <span>09:00 – 17:00</span>
       </div>
       <div class="chip">
         <label>Presentations</label>
@@ -257,123 +272,135 @@
     </div>
   </div>
 
-  <!-- PROGRAMME AT A GLANCE -->
-  <div class="sec">
-    <div class="sec-hdr">
-      <span class="sec-num">Section 01</span>
-      <span class="sec-title">Programme at a Glance</span>
-      <span class="sec-hdr-badge">Full Day</span>
+
+  <div class="tabs">
+    <div class="tab-list" role="tablist" aria-label="Programme sections">
+      <button class="tab-btn" id="tab-program" type="button" role="tab" aria-selected="true" aria-controls="panel-program">Program</button>
+      <button class="tab-btn" id="tab-presentations" type="button" role="tab" aria-selected="false" aria-controls="panel-presentations">Presentation Details</button>
+      <button class="tab-btn" id="tab-posters" type="button" role="tab" aria-selected="false" aria-controls="panel-posters">Poster Details</button>
     </div>
-    <div class="sched">
+  </div>
+
+  <div class="tab-panel active" id="panel-program" role="tabpanel" aria-labelledby="tab-program">
+    <!-- PROGRAMME AT A GLANCE -->
+    <div class="sec">
+      <div class="sec-hdr">
+        <span class="sec-num">Section 01</span>
+        <span class="sec-title">Programme at a Glance</span>
+        <span class="sec-hdr-badge">Full Day</span>
+      </div>
+      <div class="sched">
       <div class="srow th">
         <div class="scell">Time</div><div class="scell">Activity</div><div class="scell">Presenter / Remarks</div>
       </div>
       <div class="srow grp"><div class="scell">Opening Programme</div></div>
-      <div class="srow vip"><div class="scell time">09:00 &ndash; 09:05</div><div class="scell act">Opening Remarks <span class="vip-badge leadership">School Leadership</span></div><div class="scell rem"><span class="vip-person">Professor Ekaterina Pavlovskaia</span><span class="vip-role">Head of School</span></div></div>
-      <div class="srow vip"><div class="scell time">09:05 &ndash; 09:25</div><div class="scell act">Keynote Address and Symposium Officiation <span class="vip-badge guest">Keynote Speaker</span></div><div class="scell rem"><span class="vip-person">Dr Bob Conder</span><span class="vip-role">Ithaca Energy</span></div></div>
-      <div class="srow vip"><div class="scell time">09:25 &ndash; 09:55</div><div class="scell act">The important role of university–industry research alliances in an increasingly complex world <span class="vip-badge guest">Honorary Guest</span></div><div class="scell rem"><span class="vip-person">Sir Iain Gray</span><span class="vip-role">Chair of the Engineering Advisory Board</span></div></div>
-      <div class="srow grp"><div class="scell">Morning — Fluid mechanics and industry talk <span class="chair-tag">Session Chair: Dr Botelho Disu</span></div></div>
-      <div class="srow"><div class="scell time">09:55 &ndash; 10:05</div><div class="scell act">A preliminary assessment of reduced-footprint mooring systems for floating offshore wind turbines<small>10-min Oral</small></div><div class="scell rem"><strong>Dung Tuan Pham</strong></div></div>
-      <div class="srow"><div class="scell time">10:05 &ndash; 10:15</div><div class="scell act">Hydrodynamics of bio-inspired surface roughness: a case study using billfish<small>10-min Oral</small></div><div class="scell rem"><strong>Ahmed Ibrahim</strong></div></div>
-      <div class="srow"><div class="scell time">10:15 &ndash; 10:25</div><div class="scell act">Evaluation of hydrogen dissolution and H2-brine-rock reactions during cyclic underground hydrogen storage in saline aquifers<small>10-min Oral</small></div><div class="scell rem"><strong>Kaletatikor Kingdom Unwene</strong></div></div>
-      <div class="srow"><div class="scell time">10:25 &ndash; 10:35</div><div class="scell act">Microbial biodegradation of crude oil in tidal coastal sands: multiscale experiments and multiphase modelling<small>10-min Oral</small></div><div class="scell rem"><strong>Turan Mutallimov</strong></div></div>
-      <div class="srow"><div class="scell time">10:35 &ndash; 10:45</div><div class="scell act">Discussion</div><div class="scell rem">Session Q&amp;A</div></div>
-      <div class="srow vip"><div class="scell time">10:45 &ndash; 11:00</div><div class="scell act">From Research to Reality I <span class="vip-badge industry">Industry Speaker</span><small>Industry / research talk</small></div><div class="scell rem"><span class="vip-person">Ila Glennie</span><span class="vip-role">Vice President, Subsea, bp</span></div></div>
-      <div class="srow brk"><div class="scell time">11:00 &ndash; 11:25</div><div class="scell act">Coffee Break &amp; Poster Session</div><div class="scell rem">Viewing and networking</div></div>
-      <div class="srow grp"><div class="scell">Late morning — Chemical processes and materials <span class="chair-tag">Session Chair: Dr Botelho Disu</span></div></div>
-      <div class="srow"><div class="scell time">11:25 &ndash; 11:35</div><div class="scell act">Transfer hydrogenation of CO₂ with glycerol over zeolite-based catalysts<small>10-min Oral</small></div><div class="scell rem"><strong>Fatima Umar Mukhtar</strong></div></div>
-      <div class="srow"><div class="scell time">11:35 &ndash; 11:45</div><div class="scell act">Optimising Ni-Fe catalysed waste plastic pyrolysis for enhanced carbon nanotubes and hydrogen production<small>10-min Oral</small></div><div class="scell rem"><strong>Tian Wang</strong></div></div>
-      <div class="srow"><div class="scell time">11:45 &ndash; 11:55</div><div class="scell act">Liquid hydrogen refuelling station safety<small>10-min Oral</small></div><div class="scell rem"><strong>Jack Stevenson</strong></div></div>
-      <div class="srow"><div class="scell time">11:55 &ndash; 12:05</div><div class="scell act">Unveiling alumina and silica catalyst support influence in the pyrolysis-catalytic gasification process<small>10-min Oral</small></div><div class="scell rem"><strong>Tianheng Qin</strong></div></div>
-      <div class="srow"><div class="scell time">12:05 &ndash; 12:15</div><div class="scell act">Hydrogen production via thermal cracking of ammonia<small>10-min Oral</small></div><div class="scell rem"><strong>Lekidelu Asrat Ayalew</strong></div></div>
-      <div class="srow"><div class="scell time">12:15 &ndash; 12:25</div><div class="scell act">A simulation study on the comparison of various process configurations for the production of bio-hydrogen through dark fermentation<small>10-min Oral</small></div><div class="scell rem"><strong>Kin Ip Chu</strong></div></div>
-      <div class="srow"><div class="scell time">12:25 &ndash; 12:35</div><div class="scell act">Discussion</div><div class="scell rem">Session Q&amp;A</div></div>
-      <div class="srow grp"><div class="scell">Early afternoon — Electrical systems and electronics <span class="chair-tag">Session Chair: Dr Botelho Disu</span></div></div>
-      <div class="srow"><div class="scell time">12:35 &ndash; 12:45</div><div class="scell act">Employment factors in the energy transition: a comparative study of three regions<small>10-min Oral</small></div><div class="scell rem"><strong>Iyowuna Winston Gobo</strong></div></div>
-      <div class="srow"><div class="scell time">12:45 &ndash; 12:55</div><div class="scell act">Analytical state-space modelling and validation of a 10 MW type-IV wind turbine<small>10-min Oral</small></div><div class="scell rem"><strong>Abdussamad Umar Adam</strong></div></div>
-      <div class="srow"><div class="scell time">12:55 &ndash; 13:05</div><div class="scell act">Multi-horizon solar irradiance forecasting using physics-normalised LSTM and machine learning models<small>10-min Oral</small></div><div class="scell rem"><strong>Mustafa Alsuwaid</strong></div></div>
-      <div class="srow"><div class="scell time">13:05 &ndash; 13:15</div><div class="scell act">Discussion</div><div class="scell rem">Session Q&amp;A</div></div>
-      <div class="srow brk"><div class="scell time">13:15 &ndash; 14:05</div><div class="scell act">Lunch Break</div><div class="scell rem">50-minute break</div></div>
-      <div class="srow grp"><div class="scell">Afternoon — Industry and applied dynamics / structures <span class="chair-tag">Session Chair: Dr Botelho Disu</span></div></div>
-      <div class="srow vip"><div class="scell time">14:05 &ndash; 14:20</div><div class="scell act">From Research to Reality II <span class="vip-badge industry">Industry Speaker</span><small>Industry / research talk</small></div><div class="scell rem"><span class="vip-person">Tom Brian</span><span class="vip-role">Aize</span></div></div>
-      <div class="srow"><div class="scell time">14:20 &ndash; 14:30</div><div class="scell act">Simulations of floating offshore wind marine operations<small>10-min Oral</small></div><div class="scell rem"><strong>Alastair Ramsay</strong></div></div>
-      <div class="srow"><div class="scell time">14:30 &ndash; 14:40</div><div class="scell act">Nonlinear electromechanical modelling and cascaded sliding mode control of a wheeled self-balancing robot<small>10-min Oral</small></div><div class="scell rem"><strong>Petar Avramov</strong></div></div>
-      <div class="srow"><div class="scell time">14:40 &ndash; 14:50</div><div class="scell act">Reliability-based failure mode assessment of FRP-repaired pipelines with embedded cracks<small>10-min Oral</small></div><div class="scell rem"><strong>Morris Kuzenza</strong></div></div>
-      <div class="srow brk"><div class="scell time">14:50 &ndash; 15:00</div><div class="scell act">Session Buffer</div><div class="scell rem">Reserved for transition and timing recovery</div></div>
-      <div class="srow"><div class="scell time">15:00 &ndash; 15:10</div><div class="scell act">Discussion</div><div class="scell rem">Session Q&amp;A</div></div>
-      <div class="srow grp"><div class="scell">Late afternoon — CERN and electrical systems <span class="chair-tag">Session Chair: Dr Botelho Disu</span></div></div>
-      <div class="srow vip"><div class="scell time">15:10 &ndash; 15:25</div><div class="scell act">From Research to Reality III <span class="vip-badge industry">Guest Institution</span><small>Industry / research talk</small></div><div class="scell rem"><span class="vip-person">European Organization for Nuclear Research (CERN)</span></div></div>
-      <div class="srow"><div class="scell time">15:25 &ndash; 15:35</div><div class="scell act">Assessing the impact of interference and crosstalk in bioelectrical EMG signals between muscles with the finite element method<small>10-min Oral</small></div><div class="scell rem"><strong>Nikolaos Bardas</strong></div></div>
-      <div class="srow"><div class="scell time">15:35 &ndash; 15:45</div><div class="scell act">Developing a generalised Mueller matrix for a three-dimensional linear polariser<small>10-min Oral</small></div><div class="scell rem"><strong>Morgan Watson</strong></div></div>
-      <div class="srow"><div class="scell time">15:45 &ndash; 15:55</div><div class="scell act">Identification and control of nonlinear dynamics in a flexible tape spring manipulator with variable-length deployment and retraction<small>10-min Oral</small></div><div class="scell rem"><strong>Alexander Bristow</strong></div></div>
-      <div class="srow brk"><div class="scell time">15:55 &ndash; 16:05</div><div class="scell act">Session Buffer</div><div class="scell rem">Reserved for transition and timing recovery</div></div>
-      <div class="srow"><div class="scell time">16:05 &ndash; 16:15</div><div class="scell act">Discussion</div><div class="scell rem">Session Q&amp;A</div></div>
-      <div class="srow brk"><div class="scell time">16:15 &ndash; 16:35</div><div class="scell act">Coffee Break &amp; Poster Session</div><div class="scell rem">Viewing and networking</div></div>
-      <div class="srow brk"><div class="scell time">16:35 &ndash; 16:45</div><div class="scell act">Session Buffer</div><div class="scell rem">Reserved for transition and timing recovery</div></div>
-      <div class="srow grp"><div class="scell">Closing programme — Engineering impact pitch and awards <span class="chair-tag">Impact Pitch Chair: Dr Botelho Disu</span></div></div>
-      <div class="srow"><div class="scell time">16:45 &ndash; 16:48</div><div class="scell act">Water impurity diagnostics in PEM water electrolysis<small>3-min Impact Pitch</small></div><div class="scell rem"><strong>Ruba Al Shabibi</strong></div></div>
-      <div class="srow"><div class="scell time">16:48 &ndash; 16:51</div><div class="scell act">Sensorless software-defined compliance for high-payload origami robotics<small>3-min Impact Pitch</small></div><div class="scell rem"><strong>Myronas Koulas</strong></div></div>
-      <div class="srow"><div class="scell time">16:51 &ndash; 16:54</div><div class="scell act">Mechanical behaviour of reusable cold-formed steel beam-to-column connections with 3D-printed wheel connectors<small>3-min Impact Pitch</small></div><div class="scell rem"><strong>Amir Amirbeygloo</strong></div></div>
-      <div class="srow"><div class="scell time">16:54 &ndash; 16:57</div><div class="scell act">Pore-scale investigation of temperature-dependent mineral dissolution and porosity enhancement in porous material<small>3-min Impact Pitch</small></div><div class="scell rem"><strong>Xingyu Li</strong></div></div>
-      <div class="srow brk"><div class="scell time">16:57 &ndash; 17:00</div><div class="scell act">Impact Pitch Buffer</div><div class="scell rem">Reserved for transitions and timing recovery</div></div>
-      <div class="srow vip"><div class="scell time">17:00 &ndash; 17:10</div><div class="scell act">Closing Remarks <span class="vip-badge leadership">PGR Leadership</span></div><div class="scell rem"><span class="vip-person">Dr Mehmet Kartal</span><span class="vip-role">PGR Director</span></div></div>
-      <div class="srow vip"><div class="scell time">17:10 &ndash; 17:30</div><div class="scell act">Prize Giving Ceremony <span class="vip-badge official">Official Session</span></div><div class="scell rem">Awards presentation</div></div>
-      <div class="srow vip"><div class="scell time">17:30 &ndash; 17:35</div><div class="scell act">Photo Session <span class="vip-badge official">Official Photography</span></div><div class="scell rem"><span class="vip-person">Cassandra Marcos</span></div></div>
-      <div class="srow" style="background:rgba(14,33,176,0.05)"><div class="scell time" style="color:var(--navy);font-size:12px">17:35</div><div class="scell act" style="color:var(--royal)">End of Programme</div><div class="scell rem"></div></div>
+      <div class="srow vip"><div class="scell time">09:00 &ndash; 09:05</div><div class="scell act">Opening Remarks <span class="vip-badge leadership">School Leadership</span></div><div class="scell rem"><span class="vip-person">Professor Ekaterina Pavlovskaia, CEng FIMechE</span><span class="vip-role">Head of School</span></div></div>
+      <div class="srow vip"><div class="scell time">09:05 &ndash; 09:25</div><div class="scell act">Keynote Address and Symposium Officiation <span class="vip-badge guest">Keynote Speaker</span></div><div class="scell rem"><span class="vip-person">Dr Bob Conder, CEng</span><span class="vip-role">Ithaca Energy</span></div></div>
+      <div class="srow vip"><div class="scell time">09:25 &ndash; 09:55</div><div class="scell act">The important role of university&ndash;industry research alliances in an increasingly complex world <span class="vip-badge guest">Honorary Guest</span></div><div class="scell rem"><span class="vip-person">Sir Iain Gray, CBE FRSE FREng</span><span class="vip-role">Chair of the Engineering Advisory Board</span></div></div>
+      <div class="srow grp"><div class="scell">Morning &mdash; Fluid mechanics and industry talk <span class="chair-tag">Session Chair: Dr Botelho Disu</span></div></div>
+      <div class="srow"><div class="scell time">09:55 &ndash; 10:05</div><div class="scell act">Hydrodynamics of bio-inspired surface roughness: a case study using billfish<small>10-min Oral</small></div><div class="scell rem"><strong>Ahmed Ibrahim</strong></div></div>
+      <div class="srow"><div class="scell time">10:05 &ndash; 10:15</div><div class="scell act">Evaluation of hydrogen dissolution and H2-brine-rock reactions during cyclic underground hydrogen storage in saline aquifers<small>10-min Oral</small></div><div class="scell rem"><strong>Kaletatikor Kingdom Unwene</strong></div></div>
+      <div class="srow"><div class="scell time">10:15 &ndash; 10:25</div><div class="scell act">Microbial biodegradation of crude oil in tidal coastal sands: multiscale experiments and multiphase modelling<small>10-min Oral</small></div><div class="scell rem"><strong>Turan Mutallimov</strong></div></div>
+      <div class="srow"><div class="scell time">10:25 &ndash; 10:35</div><div class="scell act">Discussion Session<small>Q&amp;A</small></div><div class="scell rem">Session Q&amp;A</div></div>
+      <div class="srow vip"><div class="scell time">10:35 &ndash; 10:50</div><div class="scell act">From Research to Reality I <span class="vip-badge industry">Industry Speaker</span><small>Industry / research talk</small></div><div class="scell rem"><span class="vip-person">Ms Ila Glennie, FREng</span><span class="vip-role">Vice President, Subsea, bp</span></div></div>
+      <div class="srow brk"><div class="scell time">10:50 &ndash; 11:15</div><div class="scell act">Coffee Break &amp; Poster Session</div><div class="scell rem">Viewing and networking</div></div>
+      <div class="srow grp"><div class="scell">Late morning &mdash; Chemical processes and materials <span class="chair-tag">Session Chair: Dr Botelho Disu</span></div></div>
+      <div class="srow"><div class="scell time">11:15 &ndash; 11:25</div><div class="scell act">Transfer hydrogenation of CO2 with glycerol over zeolite-based catalysts<small>10-min Oral</small></div><div class="scell rem"><strong>Fatima Umar Mukhtar</strong></div></div>
+      <div class="srow"><div class="scell time">11:25 &ndash; 11:35</div><div class="scell act">Optimising Ni-Fe catalysed waste plastic pyrolysis for enhanced carbon nanotubes and hydrogen production<small>10-min Oral</small></div><div class="scell rem"><strong>Tian Wang</strong></div></div>
+      <div class="srow"><div class="scell time">11:35 &ndash; 11:45</div><div class="scell act">Liquid hydrogen refuelling station safety<small>10-min Oral</small></div><div class="scell rem"><strong>Jack Stevenson</strong></div></div>
+      <div class="srow"><div class="scell time">11:45 &ndash; 11:55</div><div class="scell act">Unveiling alumina and silica catalyst support influence in the pyrolysis-catalytic gasification process<small>10-min Oral</small></div><div class="scell rem"><strong>Tianheng Qin</strong></div></div>
+      <div class="srow"><div class="scell time">11:55 &ndash; 12:05</div><div class="scell act">Hydrogen production via thermal cracking of ammonia<small>10-min Oral</small></div><div class="scell rem"><strong>Lekidelu Asrat Ayalew</strong></div></div>
+      <div class="srow"><div class="scell time">12:05 &ndash; 12:15</div><div class="scell act">A simulation study on the comparison of various process configurations for the production of bio-hydrogen through dark fermentation<small>10-min Oral</small></div><div class="scell rem"><strong>Kin Ip Chu</strong></div></div>
+      <div class="srow"><div class="scell time">12:15 &ndash; 12:25</div><div class="scell act">Discussion Session<small>Q&amp;A</small></div><div class="scell rem">Session Q&amp;A</div></div>
+      <div class="srow grp"><div class="scell">Early afternoon &mdash; Electrical systems and electronics <span class="chair-tag">Session Chair: Dr Botelho Disu</span></div></div>
+      <div class="srow"><div class="scell time">12:25 &ndash; 12:35</div><div class="scell act">Employment factors in the energy transition: a comparative study of three regions<small>10-min Oral</small></div><div class="scell rem"><strong>Iyowuna Winston Gobo</strong></div></div>
+      <div class="srow"><div class="scell time">12:35 &ndash; 12:45</div><div class="scell act">Analytical state-space modelling and validation of a 10 MW type-IV wind turbine<small>10-min Oral</small></div><div class="scell rem"><strong>Abdussamad Umar Adam</strong></div></div>
+      <div class="srow"><div class="scell time">12:45 &ndash; 12:55</div><div class="scell act">Multi-horizon solar irradiance forecasting using physics-normalised LSTM and machine learning models<small>10-min Oral</small></div><div class="scell rem"><strong>Mustafa Alsuwaid</strong></div></div>
+      <div class="srow"><div class="scell time">12:55 &ndash; 13:05</div><div class="scell act">Discussion Session<small>Q&amp;A</small></div><div class="scell rem">Session Q&amp;A</div></div>
+      <div class="srow brk"><div class="scell time">13:05 &ndash; 13:55</div><div class="scell act">Lunch Break</div><div class="scell rem">50-minute break</div></div>
+      <div class="srow grp"><div class="scell">Afternoon &mdash; Applied dynamics and structures <span class="chair-tag">Session Chair: Dr Botelho Disu</span></div></div>
+      <div class="srow"><div class="scell time">13:55 &ndash; 14:05</div><div class="scell act">A preliminary assessment of reduced-footprint mooring systems for floating offshore wind turbines<small>10-min Oral</small></div><div class="scell rem"><strong>Tuan Dung Pham</strong></div></div>
+      <div class="srow"><div class="scell time">14:05 &ndash; 14:15</div><div class="scell act">Simulations of floating offshore wind marine operations<small>10-min Oral</small></div><div class="scell rem"><strong>Alastair Ramsay</strong></div></div>
+      <div class="srow"><div class="scell time">14:15 &ndash; 14:25</div><div class="scell act">Nonlinear electromechanical modelling and cascaded sliding mode control of a wheeled self-balancing robot<small>10-min Oral</small></div><div class="scell rem"><strong>Petar Avramov</strong></div></div>
+      <div class="srow"><div class="scell time">14:25 &ndash; 14:35</div><div class="scell act">Reliability-based failure mode assessment of FRP-repaired pipelines with embedded cracks<small>10-min Oral</small></div><div class="scell rem"><strong>Morris Kuzenza</strong></div></div>
+      <div class="srow"><div class="scell time">14:35 &ndash; 14:45</div><div class="scell act">Discussion Session<small>Q&amp;A</small></div><div class="scell rem">Session Q&amp;A</div></div>
+      <div class="srow grp"><div class="scell">Late afternoon &mdash; CERN and electrical systems <span class="chair-tag">Session Chair: Dr Botelho Disu</span></div></div>
+      <div class="srow vip"><div class="scell time">14:45 &ndash; 15:00</div><div class="scell act">From Research to Reality II <span class="vip-badge industry">Guest Institution</span><small>Guest Institution / research talk</small></div><div class="scell rem"><span class="vip-person">Dr Giulia Romagnoli</span><span class="vip-role">European Organization for Nuclear Research (CERN)</span></div></div>
+      <div class="srow"><div class="scell time">15:00 &ndash; 15:10</div><div class="scell act">Assessing the impact of interference and crosstalk in bioelectrical EMG signals between muscles with the finite element method<small>10-min Oral</small></div><div class="scell rem"><strong>Nikolaos Bardas</strong></div></div>
+      <div class="srow"><div class="scell time">15:10 &ndash; 15:20</div><div class="scell act">Developing a generalised Mueller matrix for a three-dimensional linear polariser<small>10-min Oral</small></div><div class="scell rem"><strong>Morgan Watson</strong></div></div>
+      <div class="srow"><div class="scell time">15:20 &ndash; 15:30</div><div class="scell act">Identification and control of nonlinear dynamics in a flexible tape spring manipulator with variable-length deployment and retraction<small>10-min Oral</small></div><div class="scell rem"><strong>Alexander Bristow</strong></div></div>
+      <div class="srow"><div class="scell time">15:30 &ndash; 15:40</div><div class="scell act">Discussion Session<small>Q&amp;A</small></div><div class="scell rem">Session Q&amp;A</div></div>
+      <div class="srow brk"><div class="scell time">15:40 &ndash; 16:00</div><div class="scell act">Coffee Break &amp; Poster Session</div><div class="scell rem">Viewing and networking</div></div>
+      <div class="srow brk"><div class="scell time">16:00 &ndash; 16:10</div><div class="scell act">Session Buffer<small>Transition</small></div><div class="scell rem">Reserved for transition and timing recovery</div></div>
+      <div class="srow grp"><div class="scell">Closing programme &mdash; Engineering impact pitch and awards <span class="chair-tag">Impact Pitch Chair: Dr Botelho Disu</span></div></div>
+      <div class="srow"><div class="scell time">16:10 &ndash; 16:13</div><div class="scell act">Water impurity diagnostics in PEM water electrolysis<small>3-min Impact Pitch</small></div><div class="scell rem"><strong>Ruba Al Shabibi</strong></div></div>
+      <div class="srow"><div class="scell time">16:13 &ndash; 16:16</div><div class="scell act">Sensorless software-defined compliance for high-payload origami robotics<small>3-min Impact Pitch</small></div><div class="scell rem"><strong>Myronas Koulas</strong></div></div>
+      <div class="srow"><div class="scell time">16:16 &ndash; 16:19</div><div class="scell act">Mechanical behaviour of reusable cold-formed steel beam-to-column connections with 3D-printed wheel connectors<small>3-min Impact Pitch</small></div><div class="scell rem"><strong>Amir Amirbeygloo</strong></div></div>
+      <div class="srow"><div class="scell time">16:19 &ndash; 16:22</div><div class="scell act">Pore-scale investigation of temperature-dependent mineral dissolution and porosity enhancement in porous material<small>3-min Impact Pitch</small></div><div class="scell rem"><strong>Xingyu Li</strong></div></div>
+      <div class="srow brk"><div class="scell time">16:22 &ndash; 16:25</div><div class="scell act">Impact Pitch Buffer<small>Transition</small></div><div class="scell rem">Reserved for transitions and timing recovery</div></div>
+      <div class="srow vip"><div class="scell time">16:25 &ndash; 16:35</div><div class="scell act">Closing Remarks <span class="vip-badge leadership">PGR Leadership</span></div><div class="scell rem"><span class="vip-person">Dr Mehmet Kartal, CEng FIMechE</span><span class="vip-role">PGR Director</span></div></div>
+      <div class="srow vip"><div class="scell time">16:35 &ndash; 16:55</div><div class="scell act">Prize Giving Ceremony <span class="vip-badge official">Official Session</span></div><div class="scell rem">Awards presentation</div></div>
+      <div class="srow vip"><div class="scell time">16:55 &ndash; 17:00</div><div class="scell act">Photo Session <span class="vip-badge official">Official Photography</span></div><div class="scell rem"><span class="vip-person">Cassandra Marcos</span></div></div>
+      <div class="srow" style="background:rgba(14,33,176,0.05)"><div class="scell time" style="color:var(--navy);font-size:12px">17:00</div><div class="scell act" style="color:var(--royal)">End of Programme</div><div class="scell rem"></div></div>
+      </div>
     </div>
   </div>
 
-  <!-- DIVIDER -->
-  <div class="section-div"><div class="section-div-line"></div><div class="section-div-label">Oral Presenters</div><div class="section-div-line"></div></div>
+  <div class="tab-panel" id="panel-presentations" role="tabpanel" aria-labelledby="tab-presentations">
+    <!-- DIVIDER -->
+    <div class="section-div"><div class="section-div-line"></div><div class="section-div-label">Presentation Details</div><div class="section-div-line"></div></div>
 
-  <!-- ORAL PRESENTATIONS -->
-  <div class="sec">
-    <div class="sec-hdr">
-      <span class="sec-num">Section 02</span>
-      <span class="sec-title">Oral Presentations</span>
-      <span class="sec-hdr-badge">23 Presenters</span>
-    </div>
+    <!-- ORAL PRESENTATIONS -->
+    <div class="sec">
+      <div class="sec-hdr">
+        <span class="sec-num">Section 02</span>
+        <span class="sec-title">Presentation Details</span>
+        <span class="sec-hdr-badge">23 Presenters</span>
+      </div>
 
     <div class="pgrp-lbl">Fluid Mechanics</div>
-    <div class="pcard"><div class="pn">1</div><div class="pbody"><div class="pname">Dung Tuan Pham</div><div class="pdisc">Fluid Mechanics</div><span class="ptag">10-min Oral</span><div class="ptitle">A preliminary assessment of reduced-footprint mooring systems for floating offshore wind turbines</div><div class="psup"><b>Supervisors:</b> Prof. Ana Ivanovic · Prof. Richard D. Neilson · Dr. Marcin Kapitaniak</div></div></div>
-    <div class="pcard"><div class="pn">2</div><div class="pbody"><div class="pname">Ahmed Ibrahim</div><div class="pdisc">Fluid Mechanics</div><span class="ptag">10-min Oral</span><div class="ptitle">Hydrodynamics of bio-inspired surface roughness: a case study using billfish</div><div class="psup"><b>Supervisor:</b> Dr. Mark Stewart</div></div></div>
-    <div class="pcard"><div class="pn">3</div><div class="pbody"><div class="pname">Kaletatikor Kingdom Unwene</div><div class="pdisc">Fluid Mechanics</div><span class="ptag">10-min Oral</span><div class="ptitle">Evaluation of hydrogen dissolution and H2-brine-rock reactions during cyclic underground hydrogen storage in saline aquifers</div><div class="psup"><b>Supervisor:</b> Dr. Prashant Jadhawar</div></div></div>
-    <div class="pcard"><div class="pn">4</div><div class="pbody"><div class="pname">Turan Mutallimov</div><div class="pdisc">Fluid Mechanics</div><span class="ptag">10-min Oral</span><div class="ptitle">Microbial biodegradation of crude oil in tidal coastal sands: multiscale experiments and multiphase modelling</div><div class="psup"><b>Supervisors:</b> Dr. Kejian Wu · Prof Hai Deng</div></div></div>
-    <div class="pcard"><div class="pn">5</div><div class="pbody"><div class="pname">Xingyu Li</div><div class="pdisc">Fluid Mechanics</div><span class="ptag">3-min Impact Pitch</span><div class="ptitle">Pore-scale investigation of temperature-dependent mineral dissolution and porosity enhancement in porous material</div><div class="psup"><b>Supervisor:</b> Dr. Yingfang Zhou</div></div></div>
+    <div class="pcard"><div class="pn">1</div><div class="pbody"><div class="pname">Ahmed Ibrahim</div><div class="pdisc">Fluid Mechanics</div><span class="ptag">10-min Oral</span><div class="ptitle">Hydrodynamics of bio-inspired surface roughness: a case study using billfish</div><div class="psup"><b>Supervisor:</b> Dr. Mark Stewart</div></div></div>
+    <div class="pcard"><div class="pn">2</div><div class="pbody"><div class="pname">Kaletatikor Kingdom Unwene</div><div class="pdisc">Fluid Mechanics</div><span class="ptag">10-min Oral</span><div class="ptitle">Evaluation of hydrogen dissolution and H2-brine-rock reactions during cyclic underground hydrogen storage in saline aquifers</div><div class="psup"><b>Supervisor:</b> Dr. Prashant Jadhawar</div></div></div>
+    <div class="pcard"><div class="pn">3</div><div class="pbody"><div class="pname">Turan Mutallimov</div><div class="pdisc">Fluid Mechanics</div><span class="ptag">10-min Oral</span><div class="ptitle">Microbial biodegradation of crude oil in tidal coastal sands: multiscale experiments and multiphase modelling</div><div class="psup"><b>Supervisors:</b> Dr. Kejian Wu · Prof Hai Deng</div></div></div>
     <div class="pgrp-lbl" style="margin-top:36px">Chemical Processes and Materials</div>
-    <div class="pcard"><div class="pn">6</div><div class="pbody"><div class="pname">Fatima Umar Mukhtar</div><div class="pdisc">Chemical Processes and Materials</div><span class="ptag">10-min Oral</span><div class="ptitle">Transfer hydrogenation of CO₂ with glycerol over zeolite-based catalysts</div><div class="psup"><b>Supervisor:</b> Dr. Inês Graça</div></div></div>
-    <div class="pcard"><div class="pn">7</div><div class="pbody"><div class="pname">Tian Wang</div><div class="pdisc">Chemical Processes and Materials</div><span class="ptag">10-min Oral</span><div class="ptitle">Optimising Ni-Fe catalysed waste plastic pyrolysis for enhanced carbon nanotubes and hydrogen production</div><div class="psup"><b>Supervisor:</b> Dr. Yeshui Zhang</div></div></div>
-    <div class="pcard"><div class="pn">8</div><div class="pbody"><div class="pname">Jack Stevenson</div><div class="pdisc">Chemical Processes and Materials</div><span class="ptag">10-min Oral</span><div class="ptitle">Liquid hydrogen refuelling station safety</div><div class="psup"><b>Supervisors:</b> Dr. Henry Tan · Dr. Yeshui Zhang</div></div></div>
-    <div class="pcard"><div class="pn">9</div><div class="pbody"><div class="pname">Tianheng Qin</div><div class="pdisc">Chemical Processes and Materials</div><span class="ptag">10-min Oral</span><div class="ptitle">Unveiling alumina and silica catalyst support influence in the pyrolysis-catalytic gasification process</div><div class="psup"><b>Supervisor:</b> Dr. Yeshui Zhang</div></div></div>
-    <div class="pcard"><div class="pn">10</div><div class="pbody"><div class="pname">Lekidelu Asrat Ayalew</div><div class="pdisc">Chemical Processes and Materials</div><span class="ptag">10-min Oral</span><div class="ptitle">Hydrogen production via thermal cracking of ammonia</div><div class="psup"><b>Supervisor:</b> Dr. Panagiotis Kechagiopoulos</div></div></div>
-    <div class="pcard"><div class="pn">11</div><div class="pbody"><div class="pname">Kin Ip Chu</div><div class="pdisc">Chemical Processes and Materials</div><span class="ptag">10-min Oral</span><div class="ptitle">A simulation study on the comparison of various process configurations for the production of bio-hydrogen through dark fermentation</div><div class="psup"><b>Supervisor:</b> Dr. Aniruddha Majumder</div></div></div>
-    <div class="pcard"><div class="pn">12</div><div class="pbody"><div class="pname">Ruba Al Shabibi</div><div class="pdisc">Chemical Processes and Materials</div><span class="ptag">3-min Impact Pitch</span><div class="ptitle">Water impurity diagnostics in PEM water electrolysis</div><div class="psup"><b>Supervisors:</b> Dr. Alfonso Martinez · Dr. Raffaello Secchi</div></div></div>
+    <div class="pcard"><div class="pn">4</div><div class="pbody"><div class="pname">Fatima Umar Mukhtar</div><div class="pdisc">Chemical Processes and Materials</div><span class="ptag">10-min Oral</span><div class="ptitle">Transfer hydrogenation of CO₂ with glycerol over zeolite-based catalysts</div><div class="psup"><b>Supervisor:</b> Dr. Inês Graça</div></div></div>
+    <div class="pcard"><div class="pn">5</div><div class="pbody"><div class="pname">Tian Wang</div><div class="pdisc">Chemical Processes and Materials</div><span class="ptag">10-min Oral</span><div class="ptitle">Optimising Ni-Fe catalysed waste plastic pyrolysis for enhanced carbon nanotubes and hydrogen production</div><div class="psup"><b>Supervisor:</b> Dr. Yeshui Zhang</div></div></div>
+    <div class="pcard"><div class="pn">6</div><div class="pbody"><div class="pname">Jack Stevenson</div><div class="pdisc">Chemical Processes and Materials</div><span class="ptag">10-min Oral</span><div class="ptitle">Liquid hydrogen refuelling station safety</div><div class="psup"><b>Supervisors:</b> Dr. Henry Tan · Dr. Yeshui Zhang</div></div></div>
+    <div class="pcard"><div class="pn">7</div><div class="pbody"><div class="pname">Tianheng Qin</div><div class="pdisc">Chemical Processes and Materials</div><span class="ptag">10-min Oral</span><div class="ptitle">Unveiling alumina and silica catalyst support influence in the pyrolysis-catalytic gasification process</div><div class="psup"><b>Supervisor:</b> Dr. Yeshui Zhang</div></div></div>
+    <div class="pcard"><div class="pn">8</div><div class="pbody"><div class="pname">Lekidelu Asrat Ayalew</div><div class="pdisc">Chemical Processes and Materials</div><span class="ptag">10-min Oral</span><div class="ptitle">Hydrogen production via thermal cracking of ammonia</div><div class="psup"><b>Supervisor:</b> Dr. Panagiotis Kechagiopoulos</div></div></div>
+    <div class="pcard"><div class="pn">9</div><div class="pbody"><div class="pname">Kin Ip Chu</div><div class="pdisc">Chemical Processes and Materials</div><span class="ptag">10-min Oral</span><div class="ptitle">A simulation study on the comparison of various process configurations for the production of bio-hydrogen through dark fermentation</div><div class="psup"><b>Supervisor:</b> Dr. Aniruddha Majumder</div></div></div>
     <div class="pgrp-lbl" style="margin-top:36px">Electrical Systems and Electronics</div>
-    <div class="pcard"><div class="pn">13</div><div class="pbody"><div class="pname">Iyowuna Winston Gobo</div><div class="pdisc">Electrical Systems and Electronics</div><span class="ptag">10-min Oral</span><div class="ptitle">Employment factors in the energy transition: a comparative study of three regions</div><div class="psup"><b>Supervisor:</b> Dr. Alireza Maheri</div></div></div>
-    <div class="pcard"><div class="pn">14</div><div class="pbody"><div class="pname">Abdussamad Umar Adam</div><div class="pdisc">Electrical Systems and Electronics</div><span class="ptag">10-min Oral</span><div class="ptitle">Analytical state-space modelling and validation of a 10 MW type-IV wind turbine</div><div class="psup"><b>Supervisor:</b> Prof. Dragan Jovcic</div></div></div>
-    <div class="pcard"><div class="pn">15</div><div class="pbody"><div class="pname">Mustafa Alsuwaid</div><div class="pdisc">Electrical Systems and Electronics</div><span class="ptag">10-min Oral</span><div class="ptitle">Multi-horizon solar irradiance forecasting using physics-normalised LSTM and machine learning models</div><div class="psup"><b>Supervisor:</b> Dr. Alireza Maheri</div></div></div>
-    <div class="pcard"><div class="pn">16</div><div class="pbody"><div class="pname">Nikolaos Bardas</div><div class="pdisc">Electrical Systems and Electronics</div><span class="ptag">10-min Oral</span><div class="ptitle">Assessing the impact of interference and crosstalk in bioelectrical EMG signals between muscles with the finite element method</div><div class="psup"><b>Supervisor:</b> Prof. Edward K. Chadwick</div></div></div>
-    <div class="pcard"><div class="pn">17</div><div class="pbody"><div class="pname">Morgan Watson</div><div class="pdisc">Electrical Systems and Electronics</div><span class="ptag">10-min Oral</span><div class="ptitle">Developing a generalised Mueller matrix for a three-dimensional linear polariser</div><div class="psup"><b>Supervisor:</b> Dr. Nakkeeran Kaliyaperumal</div></div></div>
-    <div class="pcard"><div class="pn">18</div><div class="pbody"><div class="pname">Alexander Bristow</div><div class="pdisc">Electrical Systems and Electronics</div><span class="ptag">10-min Oral</span><div class="ptitle">Identification and control of nonlinear dynamics in a flexible tape spring manipulator with variable-length deployment and retraction</div><div class="psup"><b>Supervisor:</b> Dr. Andrés San-Millán</div></div></div>
+    <div class="pcard"><div class="pn">10</div><div class="pbody"><div class="pname">Iyowuna Winston Gobo</div><div class="pdisc">Electrical Systems and Electronics</div><span class="ptag">10-min Oral</span><div class="ptitle">Employment factors in the energy transition: a comparative study of three regions</div><div class="psup"><b>Supervisor:</b> Dr. Alireza Maheri</div></div></div>
+    <div class="pcard"><div class="pn">11</div><div class="pbody"><div class="pname">Abdussamad Umar Adam</div><div class="pdisc">Electrical Systems and Electronics</div><span class="ptag">10-min Oral</span><div class="ptitle">Analytical state-space modelling and validation of a 10 MW type-IV wind turbine</div><div class="psup"><b>Supervisor:</b> Prof. Dragan Jovcic</div></div></div>
+    <div class="pcard"><div class="pn">12</div><div class="pbody"><div class="pname">Mustafa Alsuwaid</div><div class="pdisc">Electrical Systems and Electronics</div><span class="ptag">10-min Oral</span><div class="ptitle">Multi-horizon solar irradiance forecasting using physics-normalised LSTM and machine learning models</div><div class="psup"><b>Supervisor:</b> Dr. Alireza Maheri</div></div></div>
+    <div class="pcard"><div class="pn">13</div><div class="pbody"><div class="pname">Nikolaos Bardas</div><div class="pdisc">Electrical Systems and Electronics</div><span class="ptag">10-min Oral</span><div class="ptitle">Assessing the impact of interference and crosstalk in bioelectrical EMG signals between muscles with the finite element method</div><div class="psup"><b>Supervisor:</b> Prof. Edward K. Chadwick</div></div></div>
+    <div class="pcard"><div class="pn">14</div><div class="pbody"><div class="pname">Morgan Watson</div><div class="pdisc">Electrical Systems and Electronics</div><span class="ptag">10-min Oral</span><div class="ptitle">Developing a generalised Mueller matrix for a three-dimensional linear polariser</div><div class="psup"><b>Supervisor:</b> Dr. Nakkeeran Kaliyaperumal</div></div></div>
+    <div class="pcard"><div class="pn">15</div><div class="pbody"><div class="pname">Alexander Bristow</div><div class="pdisc">Electrical Systems and Electronics</div><span class="ptag">10-min Oral</span><div class="ptitle">Identification and control of nonlinear dynamics in a flexible tape spring manipulator with variable-length deployment and retraction</div><div class="psup"><b>Supervisor:</b> Dr. Andrés San-Millán</div></div></div>
     <div class="pgrp-lbl" style="margin-top:36px">Applied Dynamics and Structures</div>
-    <div class="pcard"><div class="pn">19</div><div class="pbody"><div class="pname">Alastair Ramsay</div><div class="pdisc">Applied Dynamics and Structures</div><span class="ptag">10-min Oral</span><div class="ptitle">Simulations of floating offshore wind marine operations</div><div class="psup"><b>Supervisor:</b> Dr. Marcin Kapitaniak</div></div></div>
-    <div class="pcard"><div class="pn">20</div><div class="pbody"><div class="pname">Petar Avramov</div><div class="pdisc">Applied Dynamics and Structures</div><span class="ptag">10-min Oral</span><div class="ptitle">Nonlinear electromechanical modelling and cascaded sliding mode control of a wheeled self-balancing robot</div><div class="psup"><b>Supervisor:</b> Dr. Vahid Vaziri</div></div></div>
+    <div class="pcard"><div class="pn">16</div><div class="pbody"><div class="pname">Tuan Dung Pham</div><div class="pdisc">Applied Dynamics and Structures</div><span class="ptag">10-min Oral</span><div class="ptitle">A preliminary assessment of reduced-footprint mooring systems for floating offshore wind turbines</div><div class="psup"><b>Supervisors:</b> Prof. Ana Ivanovic · Prof. Richard D. Neilson · Dr. Marcin Kapitaniak</div></div></div>
+    <div class="pcard"><div class="pn">17</div><div class="pbody"><div class="pname">Alastair Ramsay</div><div class="pdisc">Applied Dynamics and Structures</div><span class="ptag">10-min Oral</span><div class="ptitle">Simulations of floating offshore wind marine operations</div><div class="psup"><b>Supervisor:</b> Dr. Marcin Kapitaniak</div></div></div>
+    <div class="pcard"><div class="pn">18</div><div class="pbody"><div class="pname">Petar Avramov</div><div class="pdisc">Applied Dynamics and Structures</div><span class="ptag">10-min Oral</span><div class="ptitle">Nonlinear electromechanical modelling and cascaded sliding mode control of a wheeled self-balancing robot</div><div class="psup"><b>Supervisor:</b> Dr. Vahid Vaziri</div></div></div>
     <div class="pgrp-lbl" style="margin-top:36px">Solid Mechanics and Materials</div>
-    <div class="pcard"><div class="pn">21</div><div class="pbody"><div class="pname">Morris Kuzenza</div><div class="pdisc">Solid Mechanics and Materials</div><span class="ptag">10-min Oral</span><div class="ptitle">Reliability-based failure mode assessment of FRP-repaired pipelines with embedded cracks</div><div class="psup"><b>Supervisor:</b> Dr. Oleksandr Menshykov</div></div></div>
-    <div class="pcard"><div class="pn">22</div><div class="pbody"><div class="pname">Myronas Koulas</div><div class="pdisc">Applied Dynamics and Structures</div><span class="ptag">3-min Impact Pitch</span><div class="ptitle">Sensorless software-defined compliance for high-payload origami robotics</div><div class="psup"><b>Supervisor:</b> Dr. Andrés San-Millán</div></div></div>
-    <div class="pcard"><div class="pn">23</div><div class="pbody"><div class="pname">Amir Amirbeygloo</div><div class="pdisc">Solid Mechanics and Materials</div><span class="ptag">3-min Impact Pitch</span><div class="ptitle">Mechanical behaviour of reusable cold-formed steel beam-to-column connections with 3D-printed wheel connectors</div><div class="psup"><b>Supervisor:</b> Dr. Alireza Bagheri Sabbagh</div></div></div>
+    <div class="pcard"><div class="pn">19</div><div class="pbody"><div class="pname">Morris Kuzenza</div><div class="pdisc">Solid Mechanics and Materials</div><span class="ptag">10-min Oral</span><div class="ptitle">Reliability-based failure mode assessment of FRP-repaired pipelines with embedded cracks</div><div class="psup"><b>Supervisor:</b> Dr. Oleksandr Menshykov</div></div></div>
+    <div class="pgrp-lbl" style="margin-top:36px">Engineering Impact Pitch</div>
+    <div class="pcard"><div class="pn">20</div><div class="pbody"><div class="pname">Ruba Al Shabibi</div><div class="pdisc">Chemical Processes and Materials</div><span class="ptag">3-min Impact Pitch</span><div class="ptitle">Water impurity diagnostics in PEM water electrolysis</div><div class="psup"><b>Supervisors:</b> Dr. Alfonso Martinez · Dr. Raffaello Secchi</div></div></div>
+    <div class="pcard"><div class="pn">21</div><div class="pbody"><div class="pname">Myronas Koulas</div><div class="pdisc">Applied Dynamics and Structures</div><span class="ptag">3-min Impact Pitch</span><div class="ptitle">Sensorless software-defined compliance for high-payload origami robotics</div><div class="psup"><b>Supervisor:</b> Dr. Andrés San-Millán</div></div></div>
+    <div class="pcard"><div class="pn">22</div><div class="pbody"><div class="pname">Amir Amirbeygloo</div><div class="pdisc">Solid Mechanics and Materials</div><span class="ptag">3-min Impact Pitch</span><div class="ptitle">Mechanical behaviour of reusable cold-formed steel beam-to-column connections with 3D-printed wheel connectors</div><div class="psup"><b>Supervisor:</b> Dr. Alireza Bagheri Sabbagh</div></div></div>
+    <div class="pcard"><div class="pn">23</div><div class="pbody"><div class="pname">Xingyu Li</div><div class="pdisc">Fluid Mechanics</div><span class="ptag">3-min Impact Pitch</span><div class="ptitle">Pore-scale investigation of temperature-dependent mineral dissolution and porosity enhancement in porous material</div><div class="psup"><b>Supervisor:</b> Dr. Yingfang Zhou</div></div></div>
+    </div>
   </div>
 
-  <!-- DIVIDER -->
-  <div class="section-div"><div class="section-div-line"></div><div class="section-div-label">Poster Presenters</div><div class="section-div-line"></div></div>
+  <div class="tab-panel" id="panel-posters" role="tabpanel" aria-labelledby="tab-posters">
+    <!-- DIVIDER -->
+    <div class="section-div"><div class="section-div-line"></div><div class="section-div-label">Poster Details</div><div class="section-div-line"></div></div>
 
-  <!-- POSTER PRESENTATIONS -->
-  <div class="sec">
-    <div class="sec-hdr">
-      <span class="sec-num">Section 03</span>
-      <span class="sec-title">Poster Presentations</span>
-      <span class="sec-hdr-badge">20 Posters</span>
-    </div>
+    <!-- POSTER PRESENTATIONS -->
+    <div class="sec">
+      <div class="sec-hdr">
+        <span class="sec-num">Section 03</span>
+        <span class="sec-title">Poster Details</span>
+        <span class="sec-hdr-badge">19 Posters</span>
+      </div>
 
     <div class="pgrp-lbl">Chemical Processes and Materials</div>
     <div class="pgrid">
@@ -382,19 +409,15 @@
       <div class="poster"><div class="poster-num">POSTER P-03</div><div class="poster-name">Nitin Bala Suresh Mythili</div><div class="poster-disc">Plasma-driven dry reforming of methane / chemical engineering</div><div class="poster-title">Electrified upgrading of biogas via plasma technologies</div><div class="poster-sup"><b>Supervisor:</b> Dr Panagiotis Kechagiopoulos</div></div>
       <div class="poster"><div class="poster-num">POSTER P-04</div><div class="poster-name">Heng Wang</div><div class="poster-disc">Underground hydrogen storage</div><div class="poster-title">Pore-scale investigation of permeability and diffusion evolution in class G cement during CO₂ exposure using time-resolved micro-CT</div><div class="poster-sup"><b>Supervisor:</b> Dr. Yingfang Zhou</div></div>
     </div>
-
     <div class="pgrp-lbl" style="margin-top:28px">Electrical Systems and Electronics</div>
     <div class="pgrid">
       <div class="poster"><div class="poster-num">POSTER P-05</div><div class="poster-name">Chao Tang</div><div class="poster-disc">Power electronics</div><div class="poster-title">Modulation optimisation for GaN-based modular multilevel converters in variable frequency drives with consideration of power density</div><div class="poster-sup"><b>Supervisor:</b> Dr. Nougain Vaibhav</div></div>
     </div>
-
     <div class="pgrp-lbl" style="margin-top:28px">Applied Dynamics and Structures</div>
     <div class="pgrid">
       <div class="poster"><div class="poster-num">POSTER P-06</div><div class="poster-name">Kutlo Popo</div><div class="poster-disc">Fractional Order Modeling of Soft Pneumatic Systems</div><div class="poster-title">Fractional-order modelling of pneumatic transmission dynamics in soft robotic actuation</div><div class="poster-sup"><b>Supervisor:</b> Professor Sumeet S. Aphale</div></div>
-      <div class="poster"><div class="poster-num">POSTER P-07</div><div class="poster-name">Akkash Muhammed Hilmi Samsudeen</div><div class="poster-disc">Applied dynamics</div><div class="poster-title">Study on helical buckling of non-uniform slender rods with connectors using finite element modelling</div><div class="poster-sup"><b>Supervisor:</b> Dr.Marcin kapitaniak</div></div>
       <div class="poster"><div class="poster-num">POSTER P-08</div><div class="poster-name">Charles Kaune</div><div class="poster-disc">Biomechanical Engineering</div><div class="poster-title">Safety-driven characterisation and control of a soft robotics wearable device for upper-limb rehabilitation</div><div class="poster-sup"><b>Supervisor:</b> Prof. Edward Chadwick</div></div>
     </div>
-
     <div class="pgrp-lbl" style="margin-top:28px">Solid Mechanics and Materials</div>
     <div class="pgrid">
       <div class="poster"><div class="poster-num">POSTER P-09</div><div class="poster-name">Pouria Darzehkanani</div><div class="poster-disc">Lightweight Steel Framing Systems</div><div class="poster-title">A novel hybrid cold-formed steel-additive manufacturing beam-to-column connection for reusable construction</div><div class="poster-sup"><b>Supervisor:</b> Dr. Alireza Bagheri Sabbagh</div></div>
@@ -403,16 +426,16 @@
       <div class="poster"><div class="poster-num">POSTER P-18</div><div class="poster-name">Muazu Salisu Muazu</div><div class="poster-disc">Pipeline Performance Management</div><div class="poster-title">Machine learning-informed burst pressure prediction of internally corroded pipelines</div><div class="poster-sup"><b>Supervisor:</b> Dr. Srinivas Sriramula</div></div>
       <div class="poster"><div class="poster-num">POSTER P-20</div><div class="poster-name">Dr Nurhasnita Hamzah</div><div class="poster-disc">Digital Twin Systems</div><div class="poster-title">A digital twin approach to noise exposure modelling and risk analysis</div><div class="poster-sup"><b>Supervisor:</b> Dr Henry Tan</div></div>
     </div>
-
     <div class="pgrp-lbl" style="margin-top:28px">Fluid Mechanics</div>
     <div class="pgrid">
       <div class="poster"><div class="poster-num">POSTER P-12</div><div class="poster-name">Denisa Krstienova</div><div class="poster-disc">Fluid Mechanics</div><div class="poster-title">Wide-field tracking of floating plastic particles in an open-channel flume using a modular multi-camera system</div><div class="poster-sup"><b>Supervisor:</b> Dr. Mark Stewart</div></div>
       <div class="poster"><div class="poster-num">POSTER P-13</div><div class="poster-name">Vasilena Ivanova</div><div class="poster-disc">Fluid Mechanics</div><div class="poster-title">Swash zone hydrodynamics on vegetated beach slopes</div><div class="poster-sup"><b>Supervisor:</b> Dr Dominic van der A</div></div>
       <div class="poster"><div class="poster-num">POSTER P-14</div><div class="poster-name">Abubakar Sadiq Ahmed</div><div class="poster-disc">Petroleum Engineering</div><div class="poster-title">Molecular-level insights into headgroup-dependent interfacial behaviour of ionic surfactants at oil/brine interfaces via molecular dynamics</div><div class="poster-sup"><b>Supervisor:</b> Dr. Lateef Akanji</div></div>
-      <div class="poster"><div class="poster-num">POSTER P-15</div><div class="poster-name">Akinyemi Owolabi</div><div class="poster-disc">Petroleum Engineering</div><div class="poster-title">Direct unsupervised semantic segmentation of porous media using novel DenseRnet and enhanced loss functions</div><div class="poster-sup"><b>Supervisor:</b> Dr Lateef Akanji</div></div>
+      <div class="poster"><div class="poster-num">POSTER P-15</div><div class="poster-name">Akinyemi Owolabi</div><div class="poster-disc">Petroleum Engineering</div><div class="poster-title">Porous Media Segmentation Using Convolutional Neural Network</div><div class="poster-sup"><b>Supervisor:</b> Dr Lateef Akanji</div></div>
       <div class="poster"><div class="poster-num">POSTER P-16</div><div class="poster-name">Ali Rashid</div><div class="poster-disc">Petroleum Engineering</div><div class="poster-title">Recent applications of artificial intelligence in CO₂ geological storage</div><div class="poster-sup"><b>Supervisor:</b> Dr. Roozbeh Rafati</div></div>
       <div class="poster"><div class="poster-num">POSTER P-17</div><div class="poster-name">Imad Biboye Eseimokumoh</div><div class="poster-disc">Petroleum Reservoir Engineering / Enhanced Oil Recovery / Nanotechnology and Molecular Modelling</div><div class="poster-title">Development and optimisation of hybrid biopolymeric nanofluids from agro-waste starches for enhanced oil recovery under harsh salinity conditions</div><div class="poster-sup"><b>Supervisor:</b> Dr. Lateef Akanji</div></div>
       <div class="poster"><div class="poster-num">POSTER P-19</div><div class="poster-name">Abdulhadi Abdulmutalib</div><div class="poster-disc">Petroleum Engineering</div><div class="poster-title">Application of ultrasound technology for inorganic scale prevention and removal</div><div class="poster-sup"><b>Supervisor:</b> Dr Hossein Hamidi</div></div>
+    </div>
     </div>
   </div>
 
@@ -452,6 +475,17 @@
   <div class="stripe-bar-bottom"></div>
 
 </div>
+
+
+<script>
+  document.querySelectorAll('.tab-btn').forEach((button) => {
+    button.addEventListener('click', () => {
+      const targetId = button.getAttribute('aria-controls');
+      document.querySelectorAll('.tab-btn').forEach((btn) => btn.setAttribute('aria-selected', String(btn === button)));
+      document.querySelectorAll('.tab-panel').forEach((panel) => panel.classList.toggle('active', panel.id === targetId));
+    });
+  });
+</script>
 
 </body>
 </html>
